@@ -204,7 +204,7 @@ Server.prototype.createScript = function(src, onError, onLoad) {
 Server.prototype.jsonpRequest = function(requestURL, requestData, requestMethod, callback) {
 	var callbackString = 'branch_callback__' + (this._jsonp_callback_index++);
 
-	var postPrefix = (requestURL.indexOf('branch.io') >= 0) ? '&data=' : '&post_data=';
+	var postPrefix = ((requestURL.indexOf('branch.io') >= 0) || (requestURL.indexOf('api-link.rabb.it') >= 0)) ? '&data=' : '&post_data=';
 	var postData = (requestMethod === 'POST') ?
 		encodeURIComponent(utils.base64encode(goog.json.serialize(requestData))) :
 		'';
